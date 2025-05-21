@@ -1,19 +1,19 @@
-import Link from 'next/link';
+import './globals.css';
+import { ReactNode } from 'react';
+import Sidebar from '../components/Sidebar'; // Assure-toi que le chemin est correct !
 
-export default function Sidebar() {
+export const metadata = {
+  title: 'Admin Panel',
+  description: 'Tableau de bord IA',
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <aside className="w-64 bg-gray-800 text-white p-6">
-      <h1 className="text-lg font-bold mb-6">GENERIC CLUB</h1>
-      <nav>
-        <ul>
-          <li className="mb-4 font-semibold">
-            <Link href="/" className="hover:underline cursor-pointer">Dashboard</Link>
-          </li>
-          <li className="mb-4 font-semibold">
-            <Link href="/users" className="hover:underline cursor-pointer">Users</Link>
-          </li>
-        </ul>
-      </nav>
-    </aside>
+    <html lang="fr">
+      <body className="flex">
+        <Sidebar />
+        <main className="flex-1">{children}</main>
+      </body>
+    </html>
   );
 }
