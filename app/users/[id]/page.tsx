@@ -6,12 +6,15 @@ import { doc, getDoc } from 'firebase/firestore';
 import Link from 'next/link';
 
 export default function UserConversationPage() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
+
   const [messages, setMessages] = useState([]);
   const [username, setUsername] = useState('');
 
   useEffect(() => {
     const fetchConversation = async () => {
+      if (!id) return;
       const docRef = doc(db, 'conversations', id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
