@@ -18,3 +18,7 @@
     "tailwindcss": "^3.3.2"
   }
 }
+
+"devDependencies": {
+  "typescript": "^5.3.0",
+  "@types/react": "^
