@@ -4,11 +4,11 @@ import { db } from '../lib/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
 export default function Home() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const querySnapshot = await getDocs(collection(db, "conversations"));
+      const querySnapshot = await getDocs(collection(db, 'conversations'));
       const data = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
@@ -51,7 +51,7 @@ export default function Home() {
             {users.map((u, i) => (
               <tr key={i} className="border-t">
                 <td className="py-2 px-4">{u.username || u.id}</td>
-                <td className="py-2 px-4">{u.messages?.slice(-1)[0]?.content || "..."}</td>
+                <td className="py-2 px-4">{u.messages?.slice(-1)[0]?.content || '...'}</td>
                 <td className="py-2 px-4">
                   <button className="bg-blue-500 text-white px-3 py-1 rounded">Afficher</button>
                 </td>
