@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { db } from '../../lib/firebase';
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { useState } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../lib/firebase';
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -64,6 +67,29 @@ function RoleToggleButton({ userId, currentRole }) {
   return (
     <button
       className={`px-3 py-1 rounded ${currentRole === "vip" ? "bg-green-500" : "bg-gray-400"}`}
+      onClick={toggleRole}
+      disabled={loading}
+    >
+      {currentRole === "vip" ? "Passer USER" : "Passer VIP"}
+    </button>
+  );
+}
+
+function RoleToggleButton({ userId, currentRole }) {
+  const [loading, setLoading] = useState(false);
+
+  const toggleRole = async () => {
+    setLoading(true);
+    const newRole = currentRole === "vip" ? "user" : "vip";
+    await updateDoc(doc(db, "conversations", userId), { role: newRole });
+    setLoading(false);
+    alert(`Utilisateur maintenant ${newRole.toUpperCase()}`);
+    window.location.reload();
+  };
+
+  return (
+    <button
+      className={`px-3 py-1 rounded cursor-pointer ${currentRole === "vip" ? "bg-green-500" : "bg-gray-400"}`}
       onClick={toggleRole}
       disabled={loading}
     >
