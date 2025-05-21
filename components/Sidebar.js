@@ -15,7 +15,7 @@ export default function Sidebar() {
         <ul>
           <li className="mb-4">
             <Link
-              href="/"
+              href="/dashboard"
               className={`block px-2 py-1 rounded font-semibold hover:bg-gray-700 ${
                 isActive('/') ? 'bg-gray-700' : ''
               }`}
