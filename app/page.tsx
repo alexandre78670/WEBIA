@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="flex h-screen">
       <aside className="w-64 bg-gray-800 text-white p-6">
-        <h1 className="text-lg font-bold mb-6">GENERIC CLUB</h1>
+        <h1 className="text-lg font-bold mb-6">Giulia BOT</h1>
         <nav>
           <ul>
             <Link className="mb-4 font-semibold">Dashboard</li>
