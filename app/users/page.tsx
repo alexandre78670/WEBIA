@@ -34,7 +34,7 @@ export default function Users() {
               <td>{u.username || u.id}</td>
               <td>
                 <Link href={`/users/${u.id}`}>
-                  <button className="bg-blue-500 text-white px-3 py-1 rounded">Afficher</button>
+                  <button className="bg-blue-500 text-white px-3 py-1 rounded cursor-pointer">Afficher</button>
                 </Link>
               </td>
               <td>
