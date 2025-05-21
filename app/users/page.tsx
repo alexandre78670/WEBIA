@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { db } from '../../lib/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -25,7 +25,7 @@ export default function Users() {
           <tr>
             <th>Utilisateur</th>
             <th>Voir conversation</th>
-            <th>VIP</th>
+            <th>Rôle</th>
           </tr>
         </thead>
         <tbody>
@@ -38,8 +38,7 @@ export default function Users() {
                 </Link>
               </td>
               <td>
-                {/* VIP bouton ici (cf section 2) */}
-                <VIPButton userId={u.id} currentRole={u.role} />
+                <RoleToggleButton userId={u.id} currentRole={u.role || "user"} />
               </td>
             </tr>
           ))}
@@ -49,31 +48,8 @@ export default function Users() {
   );
 }
 
-// On ajoute le composant VIP plus bas
-import { doc, updateDoc } from 'firebase/firestore';
-function VIPButton({ userId, currentRole }) {
-  const [loading, setLoading] = useState(false);
-  const makeVip = async () => {
-    setLoading(true);
-    await updateDoc(doc(db, "conversations", userId), { role: "vip" });
-    setLoading(false);
-    alert("Utilisateur passé VIP !");
-  };
-  return (
-    <button
-      className={`px-3 py-1 rounded ${currentRole === "vip" ? "bg-green-500" : "bg-gray-400"}`}
-      onClick={makeVip}
-      disabled={loading || currentRole === "vip"}
-    >
-      {currentRole === "vip" ? "VIP" : "Passer VIP"}
-    </button>
-  );
-}
-import { useState } from 'react';
-import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
-
-export function RoleToggleButton({ userId, currentRole }) {
+// ----- Toggle VIP/USER button -----
+function RoleToggleButton({ userId, currentRole }) {
   const [loading, setLoading] = useState(false);
 
   const toggleRole = async () => {
