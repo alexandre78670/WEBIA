@@ -10,14 +10,14 @@ export default function Sidebar() {
 
   return (
     <aside className="w-64 bg-gray-800 text-white p-6 min-h-screen">
-      <h1 className="text-lg font-bold mb-6">Giulia Bot AI</h1>
+      <h1 className="text-lg font-bold mb-6">GENERIC CLUB</h1>
       <nav>
         <ul>
           <li className="mb-4">
             <Link
               href="/dashboard"
               className={`block px-2 py-1 rounded font-semibold hover:bg-gray-700 ${
-                isActive('/') ? 'bg-gray-700' : ''
+                isActive('/dashboard') ? 'bg-gray-700' : ''
               }`}
             >
               Dashboard
