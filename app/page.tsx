@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { db } from '../lib/firebase';
 import Link from 'next/link';
+import Sidebar from './Sidebar';
 import { collection, getDocs } from 'firebase/firestore';
 
 export default function Home() {
