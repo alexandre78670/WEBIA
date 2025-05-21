@@ -1,6 +1,7 @@
+// app/layout.tsx
 import '../styles/globals.css';
+import Sidebar from '../components/Sidebar';
 import { ReactNode } from 'react';
-import Sidebar from '../components/Sidebar'; // Assure-toi que le chemin est correct !
 
 export const metadata = {
   title: 'Admin Panel',
@@ -10,9 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="fr">
-      <body className="flex">
+      <body className="flex min-h-screen">
         <Sidebar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 p-6">{children}</main>
       </body>
     </html>
   );
