@@ -69,3 +69,29 @@ function VIPButton({ userId, currentRole }) {
     </button>
   );
 }
+import { useState } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../lib/firebase';
+
+export function RoleToggleButton({ userId, currentRole }) {
+  const [loading, setLoading] = useState(false);
+
+  const toggleRole = async () => {
+    setLoading(true);
+    const newRole = currentRole === "vip" ? "user" : "vip";
+    await updateDoc(doc(db, "conversations", userId), { role: newRole });
+    setLoading(false);
+    alert(`Utilisateur maintenant ${newRole.toUpperCase()}`);
+    window.location.reload();
+  };
+
+  return (
+    <button
+      className={`px-3 py-1 rounded ${currentRole === "vip" ? "bg-green-500" : "bg-gray-400"}`}
+      onClick={toggleRole}
+      disabled={loading}
+    >
+      {currentRole === "vip" ? "Passer USER" : "Passer VIP"}
+    </button>
+  );
+}
