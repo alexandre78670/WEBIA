@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { db } from '../lib/firebase';
+import Link from 'next/link';
 import { collection, getDocs } from 'firebase/firestore';
 
 export default function Home() {
@@ -24,8 +25,8 @@ export default function Home() {
         <h1 className="text-lg font-bold mb-6">GENERIC CLUB</h1>
         <nav>
           <ul>
-            <li className="mb-4 font-semibold">Dashboard</li>
-            <li className="mb-4 font-semibold">Users</li>
+            <Link className="mb-4 font-semibold">Dashboard</li>
+            <Link className="mb-4 font-semibold">Users</li>
           </ul>
         </nav>
       </aside>
